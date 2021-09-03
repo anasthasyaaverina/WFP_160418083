@@ -21,7 +21,9 @@
 						</div>
 						<div class="col align-self-center">
 							<b>Harga : </b>Rp {{number_format($product->harga_produk)}} <br>
-							<b>Stok : </b>{{$product->stok_produk}}
+							<b>Stok : </b>{{$product->stok_produk}} <br>
+							<b>Kategori : </b>{{ucwords($product->category->nama_kategori)}}
+							{{-- <b>Supplier : </b>{{$product->supplier->nama_supplier}} --}}
 						</div>
 					</div>
 				</div>
@@ -36,7 +38,7 @@
 <hr>
 <table class="table">
 	<thead>
-		<tr>
+		<tr class="table-active">
 			<th>#</th>
 			<th>Nama Produk</th>
 			<th>Harga Produk</th>
