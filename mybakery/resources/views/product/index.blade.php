@@ -11,7 +11,7 @@
 	@foreach ($data as $product)
 		<div class="col-4 mb-3">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header text-center">
 					<h5>{{$product->nama_produk}}</h5>
 				</div>
 				<div class="card-body">

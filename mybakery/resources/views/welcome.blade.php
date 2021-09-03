@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="{{asset('fontawesome/css/all.css')}}" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -81,13 +82,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to My Bakery
+                    <img src="{{asset('main-animation.gif')}}" alt="">
+                    ~ My Bakery ~
+                    <img src="{{asset('main-animation-2.gif')}}" alt="">
                 </div>
 
                 <div class="links">
-                    <a href="{{route('categories.index')}}">Categories</a>
-                    <a href="{{route('products.index')}}">Products</a>
-                    <a href="{{route('suppliers.index')}}">Suppliers</a>
+                    <a href="{{route('categories.index')}}"><i class="fas fa-boxes"></i> Categories</a>
+                    <a href="{{route('products.index')}}"><i class="fas fa-cookie-bite"></i> Products</a>
+                    <a href="{{route('suppliers.index')}}"><i class="fas fa-parachute-box"></i> Suppliers</a>
                 </div>
             </div>
         </div>
