@@ -85,9 +85,9 @@
                 </div>
 
                 <div class="links">
+                    <a href="{{route('categories.index')}}">Categories</a>
                     <a href="{{route('products.index')}}">Products</a>
                     <a href="{{route('suppliers.index')}}">Suppliers</a>
-                    <a href="{{route('categories.index')}}">Categories</a>
                 </div>
             </div>
         </div>
