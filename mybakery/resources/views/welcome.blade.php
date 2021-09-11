@@ -92,6 +92,8 @@
                     <a href="{{route('categories.index')}}"><i class="fas fa-boxes"></i> Categories</a>
                     <a href="{{route('products.index')}}"><i class="fas fa-cookie-bite"></i> Products</a>
                     <a href="{{route('suppliers.index')}}"><i class="fas fa-parachute-box"></i> Suppliers</a>
+                    <a href="{{route('laporan.kategoriproduk')}}">Laporan 1</a>
+                    <a href="{{route('laporan.reratajumlahstok')}}">Laporan 2</a>
                 </div>
             </div>
         </div>

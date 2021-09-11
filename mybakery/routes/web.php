@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::resource('products', 'ProductController');
 Route::resource('categories', 'CategoryController');
 Route::resource('suppliers', 'SupplierController');
+
+Route::get('laporan/kategoriproduk', 'LaporanController@kategoriproduk')->name('laporan.kategoriproduk');
+Route::get('laporan/reratajumlahstok', 'LaporanController@reratajumlahstok')->name('laporan.reratajumlahstok');
