@@ -42,4 +42,9 @@ class LaporanController extends Controller
         // dd($arr_data);
         return view('laporan.reratajumlahstok', compact('data', 'arr_data'));
     }
+
+    public function showcake($id){
+        $category = Category::find($id);
+        return view('laporan.showcake', compact('category'));
+    }
 }

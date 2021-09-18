@@ -12,6 +12,7 @@
 		<tr>
 			<th>#</th>
 			<th>Nama Kategori</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,6 +20,7 @@
 			<tr>
 				<td>{{$loop->iteration}}</td>
 				<td>{{ucwords($category->nama_kategori)}}</td>
+				<td><a href="{{route('laporan.showcake', $category->id)}}" class="btn btn-sm btn-success">View Products</a></td>
 			</tr>
 		@endforeach
 	</tbody>

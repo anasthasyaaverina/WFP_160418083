@@ -21,5 +21,8 @@ Route::resource('products', 'ProductController');
 Route::resource('categories', 'CategoryController');
 Route::resource('suppliers', 'SupplierController');
 
-Route::get('laporan/kategoriproduk', 'LaporanController@kategoriproduk')->name('laporan.kategoriproduk');
-Route::get('laporan/reratajumlahstok', 'LaporanController@reratajumlahstok')->name('laporan.reratajumlahstok');
+Route::prefix('laporan')->name('laporan.')->group(function () {
+    Route::get('showcake/{id}', 'LaporanController@showcake')->name('showcake');
+    Route::get('kategoriproduk', 'LaporanController@kategoriproduk')->name('kategoriproduk');
+    Route::get('reratajumlahstok', 'LaporanController@reratajumlahstok')->name('reratajumlahstok');
+});
