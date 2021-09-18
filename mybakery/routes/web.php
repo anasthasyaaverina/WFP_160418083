@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
+
+// Route::get('/', function () {
+//     return view('layouts.admin');
+// })->name('index');
 
 Route::resource('products', 'ProductController');
 Route::resource('categories', 'CategoryController');

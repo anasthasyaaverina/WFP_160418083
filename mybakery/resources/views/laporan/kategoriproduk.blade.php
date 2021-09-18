@@ -1,11 +1,21 @@
-@extends('layouts.base')
+@extends('layouts.admin')
+
+@section('title')
+Laporan Kategori Produk
+@endsection
+
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{route('index')}}">Dashboard</a></li>
+	<li class="breadcrumb-item active">Laporan</li>
+	<li class="breadcrumb-item active">Kategori Produk</li>
+@endsection
 
 @section('content')
-<a class="btn btn-light" href="{{url('/')}}">&Lt; Back to Main Page</a>
+{{-- <a class="btn btn-light" href="{{url('/')}}">&Lt; Back to Main Page</a>
 <div class="my-4"></div>
 <h1>Laporan Kategori Produk</h1>
 
-<hr>
+<hr> --}}
 <table class="table">
 	<thead>
 		<tr>

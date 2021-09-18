@@ -1,4 +1,24 @@
-<!DOCTYPE html>
+@extends('layouts.admin')
+
+@section('title')
+Dashboard
+@endsection
+
+@section('breadcrumb')
+	<li class="breadcrumb-item active">Dashboard</li>
+@endsection
+
+@section('content')
+<div class="d-flex justify-content-center">
+    <div class="d-flex align-items-center">
+        <img src="{{asset('main-animation.gif')}}" alt="">
+        <h2>~ My Bakery ~</h2>
+        <img src="{{asset('main-animation-2.gif')}}" alt="">
+    </div>
+</div>
+@endsection
+
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="UTF-8">
@@ -98,4 +118,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}

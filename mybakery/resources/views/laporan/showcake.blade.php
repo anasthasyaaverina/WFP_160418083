@@ -1,11 +1,22 @@
-@extends('layouts.base')
+@extends('layouts.admin')
+
+@section('title')
+Produk dengan Kategori : {{ucwords($category->nama_kategori)}}
+@endsection
+
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{route('index')}}">Dashboard</a></li>
+	<li class="breadcrumb-item active">Laporan</li>
+	<li class="breadcrumb-item"><a href="{{route('categories.index')}}">Categories</a></li>
+	<li class="breadcrumb-item active">Produk Kategori {{ucwords($category->nama_kategori)}}</li>
+@endsection
 
 @section('content')
-<a class="btn btn-light" href="{{route('categories.index')}}">&Lt; Back to Previous Page</a>
+{{-- <a class="btn btn-light" href="{{route('categories.index')}}">&Lt; Back to Previous Page</a>
 <div class="my-4"></div>
 <h1>Produk dengan Kategori : {{ucwords($category->nama_kategori)}}</h1>
 
-<hr>
+<hr> --}}
 <table class="table">
 	<thead>
 		<tr class="table-active">

@@ -1,9 +1,19 @@
-@extends('layouts.base')
+@extends('layouts.admin')
+
+@section('title')
+Product Page
+@endsection
+
+@section('breadcrumb')
+	<li class="breadcrumb-item"><a href="{{route('index')}}">Dashboard</a></li>
+	<li class="breadcrumb-item active">Master</li>
+	<li class="breadcrumb-item active">Products</li>
+@endsection
 
 @section('content')
-<a class="btn btn-light" href="{{url('/')}}">&Lt; Back to Main Page</a>
+{{-- <a class="btn btn-light" href="{{url('/')}}">&Lt; Back to Main Page</a>
 <div class="my-4"></div>
-<h1>Product Page</h1>
+<h1>Product Page</h1> --}}
 
 <h4>Grid View : </h4>
 <hr>
