@@ -18,6 +18,15 @@ class SupplierController extends Controller
         return view('supplier.index', compact('data'));
     }
 
+    public function get_products(Request $request)
+    {
+        $supplier = Supplier::find($request->supplier_id);
+        $data = $supplier->products;
+        return response()->json(array(
+			'msg'=>view('supplier.ajax.products', compact('data'))->render()
+		),200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
