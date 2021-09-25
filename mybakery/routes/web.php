@@ -29,6 +29,10 @@ Route::prefix('suppliers')->name('suppliers.')->group(function () {
     Route::post('get-products', 'SupplierController@get_products')->name('get_products');
 });
 
+Route::prefix('categories')->name('categories.')->group(function () {
+    Route::post('get-products', 'CategoryController@get_products')->name('get_products');
+});
+
 Route::prefix('laporan')->name('laporan.')->group(function () {
     Route::get('showcake/{id}', 'LaporanController@showcake')->name('showcake');
     Route::get('kategoriproduk', 'LaporanController@kategoriproduk')->name('kategoriproduk');

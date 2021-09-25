@@ -18,6 +18,15 @@ class CategoryController extends Controller
         return view('category.index', compact('data'));
     }
 
+    public function get_products(Request $request)
+    {
+        $category = Category::find($request->category_id);
+        $data = $category->products;
+        return response()->json(array(
+			'msg'=>view('ajax.products', compact('data'))->render()
+		),200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

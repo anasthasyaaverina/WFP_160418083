@@ -23,7 +23,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find($request->supplier_id);
         $data = $supplier->products;
         return response()->json(array(
-			'msg'=>view('supplier.ajax.products', compact('data'))->render()
+			'msg'=>view('ajax.products', compact('data'))->render()
 		),200);
     }
 
