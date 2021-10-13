@@ -49,6 +49,8 @@
                                     <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
                                     <a class="nav-link" href="{{route('products.index')}}">Products</a>
 									<a class="nav-link" href="{{route('suppliers.index')}}">Suppliers</a>
+                                    <a class="nav-link" href="{{route('customers.index')}}">Customers</a>
+                                    <a class="nav-link" href="{{route('transactions.index')}}">Transactions</a>
                                 </nav>
                             </div>
 							<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">

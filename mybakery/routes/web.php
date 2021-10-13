@@ -24,6 +24,8 @@ Route::get('/', function () {
 Route::resource('products', 'ProductController');
 Route::resource('categories', 'CategoryController');
 Route::resource('suppliers', 'SupplierController');
+Route::resource('customers', 'CustomerController');
+Route::resource('transactions', 'TransactionController');
 
 Route::prefix('suppliers')->name('suppliers.')->group(function () {
     Route::post('get-products', 'SupplierController@get_products')->name('get_products');
