@@ -27,6 +27,10 @@ Route::resource('suppliers', 'SupplierController');
 Route::resource('customers', 'CustomerController');
 Route::resource('transactions', 'TransactionController');
 
+Route::prefix('transactions')->name('transactions.')->group(function () {
+    Route::post('get-detail-data', 'TransactionController@get_detail_data')->name('get_detail_data');
+});
+
 Route::prefix('suppliers')->name('suppliers.')->group(function () {
     Route::post('get-products', 'SupplierController@get_products')->name('get_products');
 });
@@ -39,4 +43,6 @@ Route::prefix('laporan')->name('laporan.')->group(function () {
     Route::get('showcake/{id}', 'LaporanController@showcake')->name('showcake');
     Route::get('kategoriproduk', 'LaporanController@kategoriproduk')->name('kategoriproduk');
     Route::get('reratajumlahstok', 'LaporanController@reratajumlahstok')->name('reratajumlahstok');
+    Route::get('produktransaksi', 'LaporanController@produktransaksi')->name('produktransaksi');
+    Route::post('showproduktransaksi', 'LaporanController@showproduktransaksi')->name('showproduktransaksi');
 });

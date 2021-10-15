@@ -62,6 +62,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{route('laporan.kategoriproduk')}}">Kategori Produk</a>
                                     <a class="nav-link" href="{{route('laporan.reratajumlahstok')}}">Rerata Jumlah Stok</a>
+                                    <a class="nav-link" href="{{route('laporan.produktransaksi')}}">Produk Transaksi</a>
                                 </nav>
                             </div>
                         </div>

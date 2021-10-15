@@ -13,4 +13,11 @@ class Product extends Model
     public function supplier(){
         return $this->belongsTo('App\Supplier', 'supplier_id', 'id');
     }
+
+    public function transactions(){
+        return $this->belongsToMany('App\Transaction', 'product_transaction', 'product_id', 'transaction_id')
+                    ->withPivot(
+                        'quantity', 
+                        'harga_produk');
+    }
 }

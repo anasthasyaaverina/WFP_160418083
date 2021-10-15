@@ -18,14 +18,12 @@ class TransactionController extends Controller
         return view('transaction.index', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function get_detail_data(Request $request)
     {
-        //
+        $data = Transaction::find($request->trans_id);
+        return response()->json(array(
+			'msg'=>view('ajax.products_trans', compact('data'))->render()
+		),200);
     }
 
     /**
