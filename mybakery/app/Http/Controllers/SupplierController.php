@@ -34,7 +34,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.create');
     }
 
     /**
@@ -45,7 +45,11 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = new Supplier;
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->alamat_supplier = $request->alamat_supplier;
+        $supplier->save();
+        return redirect(route('suppliers.index'))->with('success', 'Data baru berhasil ditambahkan !');
     }
 
     /**
@@ -67,7 +71,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view('supplier.edit', compact('supplier'));
     }
 
     /**
@@ -79,7 +83,10 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->alamat_supplier = $request->alamat_supplier;
+        $supplier->save();
+        return redirect(route('suppliers.index'))->with('success', 'Data berhasil diubah !');
     }
 
     /**
@@ -90,6 +97,7 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus !');
     }
 }

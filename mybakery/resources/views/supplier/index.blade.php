@@ -17,6 +17,9 @@ Supplier Page
 
 <h4>Table View :</h4>
 <hr>
+<div class="text-right">
+	<a type="button" class="btn btn-sm btn-primary mb-2" href="{{route('suppliers.create')}}">Add New Data</a>
+</div>
 <table class="table">
 	<thead>
 		<tr>
@@ -32,7 +35,13 @@ Supplier Page
 				<td>{{$loop->iteration}}</td>
 				<td>{{$supplier->nama_supplier}}</td>
 				<td>{{$supplier->alamat_supplier}}</td>
-				<td><button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalProducts" onclick="getProducts({{$supplier->id}})">Show Products</button></td>
+				<td>
+					<a type="button" class="btn btn-sm btn-success" href="{{route('suppliers.edit', $supplier->id)}}">Edit</a>
+					<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalProducts" onclick="getProducts({{$supplier->id}})">Show Products</button>
+					<form style="display: inline" action="{{route('suppliers.destroy', $supplier->id)}}" method="post">@csrf @method("DELETE")
+						<button type="submit" class="btn btn-sm btn-outline-danger" onclick="if(!confirm('Apakah mau dihapus?')) {return false;}">Delete</button>
+					</form>
+				</td>
 			</tr>
 		@endforeach
 	</tbody>
