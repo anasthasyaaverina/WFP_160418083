@@ -70,7 +70,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        $suppliers = Supplier::all();
+        return view('product.edit', compact('product', 'categories', 'suppliers'));
     }
 
     /**
@@ -82,7 +84,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->nama_produk = $request->nama_produk;
+        $product->harga_produk = $request->harga_produk;
+        $product->stok_produk = $request->stok_produk;
+        $product->category_id = $request->category_id;
+        $product->supplier_id = $request->supplier_id;
+        $product->save();
+        return redirect(route('products.index'))->with('success', 'Data berhasil diubah !');
     }
 
     /**
@@ -93,6 +101,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus !');
     }
 }

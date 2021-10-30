@@ -15,11 +15,47 @@ Product Page
 <div class="my-4"></div>
 <h1>Product Page</h1> --}}
 
-<h4>Grid View : </h4>
+<h4>Table View :</h4>
 <hr>
 <div class="text-right">
 	<a type="button" class="btn btn-sm btn-primary mb-2" href="{{route('products.create')}}">Add New Data</a>
 </div>
+<table class="table">
+	<thead>
+		<tr class="table-active">
+			<th>#</th>
+			<th>Nama Produk</th>
+			<th>Harga Produk</th>
+			<th>Stok Produk</th>
+			<th>Kategori Produk</th>
+			<th>Foto Produk</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach ($data as $product)
+			<tr>
+				<td>{{$loop->iteration}}</td>
+				<td>{{$product->nama_produk}}</td>
+				<td>{{$product->harga_produk}}</td>
+				<td>{{$product->stok_produk}}</td>
+				<td>{{ucwords($product->category->nama_kategori)}}</td>
+				<td><img src="{{asset('products_image/'.$product->foto_produk)}}" height="100" alt=""></td>
+				<td>
+					<a type="button" class="btn btn-sm btn-success" href="{{route('products.edit', $product)}}">Edit</a>
+					<form style="display: inline" action="{{route('products.destroy', $product)}}" method="post">@csrf @method("DELETE")
+						<button type="submit" class="btn btn-sm btn-outline-danger" onclick="if(!confirm('Apakah mau dihapus?')) {return false;}">Delete</button>
+					</form>
+				</td>
+			</tr>
+		@endforeach
+	</tbody>
+</table>
+
+<div class="my-4"></div>
+
+<h4>Grid View : </h4>
+<hr>
 <div class="row">
 	@foreach ($data as $product)
 		<div class="col-4 mb-3">
@@ -51,30 +87,4 @@ Product Page
 	@endforeach
 </div>
 
-<div class="my-4"></div>
-
-<h4>Table View :</h4>
-<hr>
-<table class="table">
-	<thead>
-		<tr class="table-active">
-			<th>#</th>
-			<th>Nama Produk</th>
-			<th>Harga Produk</th>
-			<th>Stok Produk</th>
-			<th>Foto Produk</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach ($data as $product)
-			<tr>
-				<td>{{$loop->iteration}}</td>
-				<td>{{$product->nama_produk}}</td>
-				<td>{{$product->harga_produk}}</td>
-				<td>{{$product->stok_produk}}</td>
-				<td><img src="{{asset('products_image/'.$product->foto_produk)}}" height="100" alt=""></td>
-			</tr>
-		@endforeach
-	</tbody>
-</table>
 @endsection
