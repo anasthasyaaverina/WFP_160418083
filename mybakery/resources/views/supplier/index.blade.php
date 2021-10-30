@@ -36,9 +36,9 @@ Supplier Page
 				<td>{{$supplier->nama_supplier}}</td>
 				<td>{{$supplier->alamat_supplier}}</td>
 				<td>
-					<a type="button" class="btn btn-sm btn-success" href="{{route('suppliers.edit', $supplier->id)}}">Edit</a>
+					<a type="button" class="btn btn-sm btn-success" href="{{route('suppliers.edit', $supplier)}}">Edit</a>
 					<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalProducts" onclick="getProducts({{$supplier->id}})">Show Products</button>
-					<form style="display: inline" action="{{route('suppliers.destroy', $supplier->id)}}" method="post">@csrf @method("DELETE")
+					<form style="display: inline" action="{{route('suppliers.destroy', $supplier)}}" method="post">@csrf @method("DELETE")
 						<button type="submit" class="btn btn-sm btn-outline-danger" onclick="if(!confirm('Apakah mau dihapus?')) {return false;}">Delete</button>
 					</form>
 				</td>
