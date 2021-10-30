@@ -17,6 +17,9 @@ Product Page
 
 <h4>Grid View : </h4>
 <hr>
+<div class="text-right">
+	<a type="button" class="btn btn-sm btn-primary mb-2" href="{{route('products.create')}}">Add New Data</a>
+</div>
 <div class="row">
 	@foreach ($data as $product)
 		<div class="col-4 mb-3">
@@ -28,7 +31,11 @@ Product Page
 					<div class="card-body">
 						<div class="row">
 							<div class="col-6">
-								<img src="{{asset('products_image/'.$product->foto_produk)}}" style="max-width: 100%" alt="">
+								@if ($product->foto_produk == "noimage")
+									<img src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png" alt="" style="max-width: 100%">
+								@else
+									<img src="{{asset('products_image/'.$product->foto_produk)}}" style="max-width: 100%" alt="">
+								@endif
 							</div>
 							<div class="col align-self-center">
 								<b>Harga : </b>Rp {{number_format($product->harga_produk)}} <br>

@@ -9,7 +9,7 @@
         <title>My Bakery - @yield('title')</title>
 		<link rel="icon" href="{{asset('shortcake-icon.png')}}">
         <link href="{{asset('admin/dist/css/styles.css')}}" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -80,6 +80,11 @@
                         <ol class="breadcrumb mb-4">
                             @yield('breadcrumb')
                         </ol>
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{session('success')}}
+                            </div>
+                        @endif
 						@yield('content')
                     </div>
                 </main>
@@ -98,12 +103,10 @@
             </div>
         </div>
         @yield('modal')
-        @yield('script')
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('admin/dist/js/scripts.js')}}"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="{{asset('admin/dist/assets/demo/datatables-demo.js')}}"></script>
+        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        @yield('script')
     </body>
 </html>

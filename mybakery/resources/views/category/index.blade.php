@@ -17,7 +17,10 @@ Categories Page
 
 <h4>Table View :</h4>
 <hr>
-<table class="table">
+<div class="text-right">
+	<a type="button" class="btn btn-sm btn-primary mb-2" href="{{route('categories.create')}}">Add New Data</a>
+</div>
+<table class="table" id="myTable">
 	<thead>
 		<tr>
 			<th>#</th>
@@ -63,6 +66,10 @@ Categories Page
 
 @section('script')
 <script>
+	$(document).ready( function () {
+		$('#myTable').DataTable();
+	} );
+
 	function getProducts(category_id) {
 		$.ajax({
 			type:'POST',
