@@ -53,17 +53,6 @@ class SupplierController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Supplier $supplier)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Supplier  $supplier
@@ -99,5 +88,38 @@ class SupplierController extends Controller
     {
         $supplier->delete();
         return redirect()->back()->with('success', 'Data berhasil dihapus !');
+    }
+
+    public function form_ajax(Request $request)
+    {
+        if ($request->supplier_id == 0) {
+            $data = null;
+        } else {
+            $data = Supplier::find($request->supplier_id);
+        }
+        return response()->json(array(
+            'msg'=>view('ajax.form-suppliers', compact('data'))->render()
+        ),200);
+    }
+
+    public function save_ajax(Request $request)
+    {
+        if ($request->supplier_id == 0) {
+            $data = new Supplier;
+        } else {
+            $data = Supplier::find($request->supplier_id);
+        }
+        $data->nama_supplier = $request->nama_supplier;
+        $data->alamat_supplier = $request->alamat_supplier;
+        $data->save();
+        return response()->json(array(
+            'msg'=>view('ajax.tr_supplier', compact('data'))->render()
+        ),200);
+    }
+
+    public function delete_ajax(Request $request)
+    {
+        $supplier = Supplier::find($request->supplier_id);
+        $supplier->delete();
     }
 }

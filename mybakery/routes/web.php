@@ -31,8 +31,17 @@ Route::prefix('transactions')->name('transactions.')->group(function () {
     Route::post('get-detail-data', 'TransactionController@get_detail_data')->name('get_detail_data');
 });
 
+Route::prefix('products')->name('products.')->group(function () {
+    Route::post('form-ajax', 'ProductController@form_ajax')->name('form.ajax');
+    Route::post('save-ajax', 'ProductController@save_ajax')->name('save.ajax');
+    Route::post('delete-ajax', 'ProductController@delete_ajax')->name('delete.ajax');
+});
+
 Route::prefix('suppliers')->name('suppliers.')->group(function () {
     Route::post('get-products', 'SupplierController@get_products')->name('get_products');
+    Route::post('form-ajax', 'SupplierController@form_ajax')->name('form.ajax');
+    Route::post('save-ajax', 'SupplierController@save_ajax')->name('save.ajax');
+    Route::post('delete-ajax', 'SupplierController@delete_ajax')->name('delete.ajax');
 });
 
 Route::prefix('categories')->name('categories.')->group(function () {

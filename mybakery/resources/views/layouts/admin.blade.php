@@ -103,6 +103,14 @@
             </div>
         </div>
         @yield('modal')
+        {{-- MODAL EDIT & CREATE ALL OBJECT --}}
+        <div class="modal fade" id="modalCreateEdit" tabindex="-1" aria-labelledby="modalCreateEditLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" id="modalCreateEditBody">
+                    
+                </div>
+            </div>
+        </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('admin/dist/js/scripts.js')}}"></script>
