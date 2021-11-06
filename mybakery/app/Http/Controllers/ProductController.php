@@ -104,4 +104,44 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back()->with('success', 'Data berhasil dihapus !');
     }
+
+    public function form_ajax(Request $request)
+    {
+        $categories = Category::all();
+        $suppliers = Supplier::all();
+        if ($request->product_id == 0) {
+            $data = null;
+        } else {
+            $data = Product::find($request->product_id);
+        }
+        return response()->json(array(
+            'msg'=>view('ajax.form-products', compact('data', 'categories', 'suppliers'))->render()
+        ),200);
+    }
+
+    public function save_ajax(Request $request)
+    {
+        if ($request->product_id == 0) {
+            $data = new Product;
+            $data->foto_produk = "noimage";
+        } else {
+            $data = Product::find($request->product_id);
+        }
+        $data->nama_produk = $request->nama_produk;
+        $data->harga_produk = $request->harga_produk;
+        $data->stok_produk = $request->stok_produk;
+        $data->category_id = $request->category_id;
+        $data->supplier_id = $request->supplier_id;
+        $data->save();
+        return response()->json(array(
+            'msg'=>view('ajax.tr_product', compact('data'))->render(),
+            'kategori'=>ucwords($data->category->nama_kategori),
+        ),200);
+    }
+
+    public function delete_ajax(Request $request)
+    {
+        $product = Product::find($request->product_id);
+        $product->delete();
+    }
 }

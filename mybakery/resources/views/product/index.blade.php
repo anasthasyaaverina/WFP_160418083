@@ -19,6 +19,7 @@ Product Page
 <hr>
 <div class="text-right">
 	<a type="button" class="btn btn-sm btn-primary mb-2" href="{{route('products.create')}}">Add New Data</a>
+	<button type="button" class="btn btn-sm btn-outline-primary mb-2" data-toggle="modal" data-target="#modalCreateEdit" onclick="getForm(0)">Add New Data Ajax</button>
 </div>
 <table class="table">
 	<thead>
@@ -32,20 +33,22 @@ Product Page
 			<th></th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody id="list_produk">
 		@foreach ($data as $product)
-			<tr>
+			<tr id="product_{{$product->id}}">
 				<td>{{$loop->iteration}}</td>
-				<td>{{$product->nama_produk}}</td>
-				<td>{{$product->harga_produk}}</td>
-				<td>{{$product->stok_produk}}</td>
-				<td>{{ucwords($product->category->nama_kategori)}}</td>
-				<td><img src="{{asset('products_image/'.$product->foto_produk)}}" height="100" alt=""></td>
+				<td id="nama_produk_{{$product->id}}">{{$product->nama_produk}}</td>
+				<td id="harga_produk_{{$product->id}}">{{$product->harga_produk}}</td>
+				<td id="stok_produk_{{$product->id}}">{{$product->stok_produk}}</td>
+				<td id="kategori_produk_{{$product->id}}">{{ucwords($product->category->nama_kategori)}}</td>
+				<td id="foto_produk_{{$product->id}}"><img src="{{asset('products_image/'.$product->foto_produk)}}" height="100" alt=""></td>
 				<td>
 					<a type="button" class="btn btn-sm btn-success" href="{{route('products.edit', $product)}}">Edit</a>
+					<button type="button" class="btn btn-sm btn-outline-success" data-target="#modalCreateEdit" data-toggle="modal" onclick="getForm({{$product->id}})">Edit Ajax</button>
 					<form style="display: inline" action="{{route('products.destroy', $product)}}" method="post">@csrf @method("DELETE")
-						<button type="submit" class="btn btn-sm btn-outline-danger" onclick="if(!confirm('Apakah mau dihapus?')) {return false;}">Delete</button>
+						<button type="submit" class="btn btn-sm btn-danger" onclick="if(!confirm('Apakah mau dihapus?')) {return false;}">Delete</button>
 					</form>
+					<button class="btn btn-sm btn-outline-danger" onclick="if(confirm('Apakah mau dihapus?')) {deleteItem({{$product->id}})}">Delete Ajax</button>
 				</td>
 			</tr>
 		@endforeach
@@ -87,4 +90,72 @@ Product Page
 	@endforeach
 </div>
 
+@endsection
+
+@section('script')
+<script>
+	function getForm(product_id) {
+		$('#modalCreateEditBody').html("<div class=\"w-100 my-4 text-center\"><div class=\"spinner-border\" role=\"status\"><span class=\"sr-only\">Loading...</span></div></div>");
+		$.ajax({
+			type:'POST',
+			url:'{{route("products.form.ajax")}}',
+			data:{'_token':'<?php echo csrf_token() ?>',
+				'product_id':product_id,
+				},
+			success: function(data){
+				$('#modalCreateEditBody').html(data.msg);
+			},
+			error: function(xhr) {
+				console.log(xhr);
+			}
+		});
+	}
+
+	function saveForm(product_id) {
+		$.ajax({
+			type:'POST',
+			url:'{{route("products.save.ajax")}}',
+			data:{'_token':'<?php echo csrf_token() ?>',
+				'product_id':product_id,
+				'nama_produk':$('#nama_produk').val(),
+				'harga_produk':$('#harga_produk').val(),
+				'stok_produk':$('#stok_produk').val(),
+				'category_id':$('#category_id').val(),
+				'supplier_id':$('#supplier_id').val(),
+				},
+			success: function(data){
+				if (product_id == 0) {
+					$('#list_produk').append(data.msg);
+					alert("{{Config::get('success_add')}}");
+				} else {
+					$('#nama_produk_'+product_id).html($('#nama_produk').val());
+					$('#harga_produk_'+product_id).html($('#harga_produk').val());
+					$('#stok_produk_'+product_id).html($('#stok_produk').val());
+					$('#kategori_produk_'+product_id).html(data.kategori);
+					alert("{{Config::get('success_edit')}}");
+				}
+			},
+			error: function(xhr) {
+				console.log(xhr);
+			}
+		});
+	}
+
+	function deleteItem(product_id) {
+		$.ajax({
+			type:'POST',
+			url:'{{route("products.delete.ajax")}}',
+			data:{'_token':'<?php echo csrf_token() ?>',
+				'product_id':product_id,
+				},
+			success: function(data){
+				$('#product_'+product_id).remove();
+				alert("{{Config::get('success_delete')}}");
+			},
+			error: function(xhr) {
+				console.log(xhr);
+			}
+		});
+	}
+</script>
 @endsection
