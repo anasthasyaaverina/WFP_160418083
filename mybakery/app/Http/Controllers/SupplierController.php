@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Supplier;
 use Illuminate\Http\Request;
 
@@ -86,6 +87,7 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
+        $this->authorize('delete-permission');
         $supplier->delete();
         return redirect()->back()->with('success', 'Data berhasil dihapus !');
     }

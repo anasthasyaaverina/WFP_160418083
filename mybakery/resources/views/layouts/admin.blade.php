@@ -22,8 +22,15 @@
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Logout</a>
+                    <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="userDropdown">
+                        @auth
+                            <form action="{{ route('logout') }}" method="post" style="all: unset">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger">Logout</button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
+                        @endauth
                     </div>
                 </li>
             </ul>
@@ -69,7 +76,11 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        @auth
+                        {{Auth::user()->name}}
+                        @else
+                        -
+                        @endauth
                     </div>
                 </nav>
             </div>
